@@ -14,55 +14,56 @@ module Mainn(
 	input fm,
 	input fa,
 	
-	output  [1:0] s_out_theta_pos,
-	output  [1:0] s_out_theta_neg,
-	output  [1:0] s_out_phi_pos,
-	output  [1:0] s_out_phi_neg
+	//salidas los LEDs de la FPGA
+	output soutp,
+	output soutn,
+	output soupp,
+	output soupn
     );
 	
 	reg SMA;
-	reg [15:0]R_vertical_1;
-	reg [15:0]R_vertical_2;
-	reg [15:0]R_horizontal_1;
-	reg [15:0]R_horizontal_2;
-	reg [15:0]theta_manual;
-	reg [15:0]theta_actual;
-	reg [15:0]phi_manual;
-	reg[15:0]phi_actual;
+	reg [15:0]RV1;
+	reg [15:0]RV2;
+	reg [15:0]RH1;
+	reg [15:0]RH2;
+	reg [15:0]THM;
+	reg [15:0]THA;
+	reg [15:0]PHM;
+	reg [15:0]PHA;
 	
 	
 always @ (*) begin
 	
 	if(sma)begin SMA=1'b1; end else begin SMA=1'b0; end
 	
-	if(rv1)begin R_vertical_1='d30; end else begin R_vertical_1='d5; end
-	if(rv2)begin R_vertical_2='d40; end else begin R_vertical_1='d5; end
-	if(rh1)begin R_horizontal_1='d35; end else begin R_horizontal_1='d5; end
-	if(rh2)begin R_horizontal_2='d45; end else begin R_horizontal_2='d5; end
+	if(rv1)begin RV1='d30; end else begin RV1='d5; end
+	if(rv2)begin RV2='d40; end else begin RV2='d5; end
+	if(rh1)begin RH1='d35; end else begin RH1='d5; end
+	if(rh2)begin RH2='d45; end else begin RH2='d5; end
 
-	if(tm)begin theta_manual='d35; end else begin theta_manual='d5; end
-	if(ta)begin theta_actual='d45; end else begin theta_actual='d5; end
-	if(fm)begin phi_manual='d30; end else begin phi_manual='d5; end
-	if(fa)begin phi_actual='d40; end else begin phi_actual='d5; end
+	if(tm)begin THM='d30; end else begin THM='d5; end
+	if(ta)begin THA='d40; end else begin THA='d5; end
+	if(fm)begin PHM='d35; end else begin PHM='d5; end
+	if(fa)begin PHA='d45; end else begin PHA='d5; end
 	
 
 end
 
 control_movimiento instance_name (
 	 .rst(rst),
-    .sma(sma), 
+    .sma(SMA), 
     .clk(clk), 
-    .R_vertical_1(R_vertical_1), 
-    .R_vertical_2(R_vertical_2), 
-    .R_horizontal_1(R_horizontal_1), 
-    .R_horizontal_2(R_horizontal_2), 
-    .theta_manual(theta_manual), 
-    .theta_actual(theta_actual), 
-    .phi_manual(phi_manual), 
-    .phi_actual(phi_actual), 
-    .s_out_theta_pos(s_out_theta_pos), 
-    .s_out_theta_neg(s_out_theta_neg), 
-    .s_out_phi_pos(s_out_phi_pos), 
-    .s_out_phi_neg(s_out_phi_neg)
-    );
+    .R_vertical_1(RV1), 
+    .R_vertical_2(RV2), 
+    .R_horizontal_1(RH1), 
+    .R_horizontal_2(RH2), 
+    .theta_manual(THM), 
+    .theta_actual(THA),
+    .phi_manual(PHM), 
+    .phi_actual(PHA), 
+    .s_out_theta_pos(soutp), 
+    .s_out_theta_neg(soutn), 
+    .s_out_phi_pos(soupp), 
+    .s_out_phi_neg(soupn));
+	 
 endmodule
