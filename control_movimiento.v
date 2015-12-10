@@ -27,12 +27,8 @@ module control_movimiento (rst,sma,clk, R_vertical_1 , R_vertical_2 , R_horizont
 	parameter [2:0] error=3'b101;//5
 	parameter [7:0] giro=8'b10110100;//180;
 	
-	//always @(R_vertical_1||R_vertical_2||R_horizontal_1||R_horizontal_2)begin
-	//always @(theta_manual||phi_manual)
-	//reg rsma;
-        //assign sma =rsma;
+	
 	always @(posedge clk)begin
-
 
 		if(rst)begin 
 			s_out_phi_pos=0;
