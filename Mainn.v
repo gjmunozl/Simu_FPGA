@@ -48,7 +48,7 @@ always @ (*) begin
 
 end
 
-control_movimiento instance_name (
+control_movimiento my_control (
 	 .rst(rst),
     .sma(SMA), 
     .clk(clk), 
