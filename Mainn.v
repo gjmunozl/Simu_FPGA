@@ -6,7 +6,7 @@ module Mainn(
 	//nuestras entradas son los switchs de la FPGA
 	input sma,
 	input rv1,
-	input rv2,
+	input rv2, 
 	input rh1,
 	input rh2,
 	input tm,
@@ -34,17 +34,16 @@ module Mainn(
 	
 always @ (*) begin
 	
-	if(sma)begin SMA=1'b1; end else begin SMA=1'b0; end
-	
-	if(rv1)begin RV1='d30; end else begin RV1='d5; end
-	if(rv2)begin RV2='d40; end else begin RV2='d5; end
-	if(rh1)begin RH1='d35; end else begin RH1='d5; end
-	if(rh2)begin RH2='d45; end else begin RH2='d5; end
+	if(sma)begin SMA=1; end else begin SMA=0; end
+	if(rv1)begin RV1=30; end else begin RV1=15; end
+	if(rv2)begin RV2=40; end else begin RV2=15; end
+	if(rh1)begin RH1=35; end else begin RH1=15; end
+	if(rh2)begin RH2=45; end else begin RH2=15; end
 
-	if(tm)begin THM='d30; end else begin THM='d5; end
-	if(ta)begin THA='d40; end else begin THA='d5; end
-	if(fm)begin PHM='d35; end else begin PHM='d5; end
-	if(fa)begin PHA='d45; end else begin PHA='d5; end
+	if(tm)begin THM='d30; end else begin THM=15; end
+	if(ta)begin THA='d40; end else begin THA=15; end
+	if(fm)begin PHM='d35; end else begin PHM=15; end
+	if(fa)begin PHA='d45; end else begin PHA=15; end
 	
 
 end
